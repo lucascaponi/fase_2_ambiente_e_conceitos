@@ -2,11 +2,17 @@ const express = require("express");
 
 const server = express();
 
-server.get("/", (req, res) => {
-  const nome = req.query.nome;
+server.get("/teste/", (req, res) => {
+  res.json({
+    message: `Hello tsu!`
+  });
+});
+
+server.get("/teste/:id", (req, res) => {
+  const id = req.params.id;
 
   res.json({
-    message: `Hello ${nome}!`
+    message: `Hello ${id}!`
   });
 });
 
