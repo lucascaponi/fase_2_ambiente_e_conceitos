@@ -28,4 +28,13 @@ server.post("/users", (req, res) => {
   res.json(users);
 });
 
+server.put("/users/:index", (req, res) => {
+  const { name } = req.body;
+  const index = req.params.index;
+
+  users[index] = name;
+
+  res.json(users);
+});
+
 server.listen(3000);
