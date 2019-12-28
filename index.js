@@ -14,6 +14,14 @@ server.use((req, res, next) => {
   console.timeEnd("Request");
 });
 
+function checkIfNameExistOnRequest(req, res, next) {
+  if (!req.body.name) {
+    return res.status(400).json({ error: "User name is required!" });
+  }
+
+  next();
+}
+
 server.get("/users", (req, res) => {
   res.json({
     users
@@ -28,7 +36,7 @@ server.get("/users/:index", (req, res) => {
   });
 });
 
-server.post("/users", (req, res) => {
+server.post("/users", checkIfNameExistOnRequest, (req, res) => {
   const { name } = req.body;
 
   users.push(name);
@@ -36,7 +44,7 @@ server.post("/users", (req, res) => {
   res.json(users);
 });
 
-server.put("/users/:index", (req, res) => {
+server.put("/users/:index", checkIfNameExistOnRequest, (req, res) => {
   const { name } = req.body;
   const index = req.params.index;
 
