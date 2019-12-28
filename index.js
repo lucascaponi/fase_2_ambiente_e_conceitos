@@ -7,9 +7,11 @@ server.use(express.json());
 const users = ["Diego", "Cláudio", "Victor", "Luana"];
 
 server.use((req, res, next) => {
-  console.log("A requisição foi chamada!");
+  console.time("Request");
+  console.log(`Método: ${req.method}; URL: ${req.url}`);
 
   next();
+  console.timeEnd("Request");
 });
 
 server.get("/users", (req, res) => {
