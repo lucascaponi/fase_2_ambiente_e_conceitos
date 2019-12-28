@@ -27,6 +27,8 @@ function checkUserInArray(req, res, next) {
     return res.status(400).json({ error: "User does not exist" });
   }
 
+  req.user = req.params.index;
+
   next();
 }
 
@@ -37,7 +39,7 @@ server.get("/users", (req, res) => {
 });
 
 server.get("/users/:index", checkUserInArray, (req, res) => {
-  const index = req.params.index;
+  const index = req.user;
 
   res.json({
     user: `${users[index]}!`
