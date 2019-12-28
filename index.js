@@ -2,11 +2,11 @@ const express = require("express");
 
 const server = express();
 
-const users = ["Diego", "Cláudio", "Victor"];
+const users = ["Diego", "Cláudio", "Victor", "Luana"];
 
 server.get("/users", (req, res) => {
   res.json({
-    message: `${users}`
+    users
   });
 });
 
@@ -14,7 +14,7 @@ server.get("/users/:index", (req, res) => {
   const index = req.params.index;
 
   res.json({
-    message: `User ${users[index]}!`
+    user: `${users[index]}!`
   });
 });
 
