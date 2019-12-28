@@ -2,17 +2,19 @@ const express = require("express");
 
 const server = express();
 
-server.get("/teste/", (req, res) => {
+const users = ["Diego", "Cláudio", "Victor"];
+
+server.get("/users", (req, res) => {
   res.json({
-    message: `Hello tsu!`
+    message: `${users}`
   });
 });
 
-server.get("/teste/:id", (req, res) => {
-  const id = req.params.id;
+server.get("/users/:index", (req, res) => {
+  const index = req.params.index;
 
   res.json({
-    message: `Hello ${id}!`
+    message: `User ${users[index]}!`
   });
 });
 
